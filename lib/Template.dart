@@ -31,7 +31,6 @@ class TemplateSelector extends StatelessWidget {
                   context, 
                   MaterialPageRoute(builder: (context) => HomePage()),
                 );
-            // Implement back navigation
           },
         ),
         actions: [
