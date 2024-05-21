@@ -7,6 +7,13 @@ jobs:
     build-apk:
       runs-on: ubuntu-latest
       steps:
+        - uses: actions/checkout@v3
+        - uses: actions/cache@v3
+          with:
+            path: ~/.pub-cache
+            key: ${{ runner.os }}-pub-${{ hashFiles('pubspec.yaml') }}
+            restore-keys: |
+              ${{ runner.os }}-pub-
         - name: Checkout Repository
           uses: actions/checkout@v2
         
