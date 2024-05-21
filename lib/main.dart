@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:theme_provider/theme_provider.dart';
 import 'Template.dart';
+import 'Generator.dart';
 
 class ThemeProvider with ChangeNotifier {
   ThemeData _currentTheme = ThemeData.light();
@@ -96,7 +97,7 @@ class HomePageState extends State<HomePage> {
               onPressed: () {
                 Navigator.push(
                   context, 
-                  MaterialPageRoute(builder: (context) => showTemplates()),
+                  MaterialPageRoute(builder: (context) => showGenerator()),
                 );
               }, 
                 child: Text('View Templates'),

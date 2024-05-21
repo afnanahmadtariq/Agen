@@ -95,16 +95,16 @@ class TemplateSelector extends StatelessWidget {
             label: 'Home',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.folder),
+            label: 'Courses',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.download),
             label: 'Downloads',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
           ),
         ],
         selectedItemColor: Colors.blue,

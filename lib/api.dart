@@ -3,7 +3,6 @@
 
 // void main() async {
 //   // Replace with your actual Azure Function details
-//   var url = Uri.https('assgen-func.azurewebsites.net', '/api/test', {
 //     'name': 'Bob'
 //   });
 
