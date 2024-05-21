@@ -12,9 +12,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - uses: dart-lang/setup-dart@v1  # Fetch the setup-dart action
-        with:
-          sdk: '3.4.0' 
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+
+      - run: dart pub get
+      - run: dart format --output=none --set-exit-if-changed .
+      - run: dart analyze
+      - run: dart test
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
