@@ -7,15 +7,11 @@ jobs:
     build-apk:
       runs-on: ubuntu-latest
       steps:
-        - uses: actions/checkout@v3
-        - uses: actions/cache@v3
-          with:
-            path: ~/.pub-cache
-            key: ${{ runner.os }}-pub-${{ hashFiles('pubspec.yaml') }}
-            restore-keys: |
-              ${{ runner.os }}-pub-
         - name: Checkout Repository
           uses: actions/checkout@v2
+        - uses: dart-lang/setup-dart@v1  # Fetch the setup-dart action
+          with:
+            sdk: '>=3.4.0 <4.0.0' 
         
         - name: Setup Flutter
           uses: subosito/flutter-action@v2
