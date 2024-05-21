@@ -1,7 +1,9 @@
+import 'package:agen/Generator.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:theme_provider/theme_provider.dart';
+import 'Template.dart';
 
 class ThemeProvider with ChangeNotifier {
   ThemeData _currentTheme = ThemeData.light();
@@ -94,7 +96,7 @@ class HomePageState extends State<HomePage> {
               onPressed: () {
                 Navigator.push(
                   context, 
-                  MaterialPageRoute(builder: (context) => Template()),
+                  MaterialPageRoute(builder: (context) => showTemplates()),
                 );
               }, 
                 child: Text('View Templates'),
@@ -130,189 +132,189 @@ class BigCard extends StatelessWidget {
   }
 }
 
-class Template extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back), 
-                    onPressed: () {
-                      Navigator.push(
-                        context, 
-                        MaterialPageRoute(builder: (context) => HomePage()),
-                      );
-                    },
-                  ),
-                  Text('Templates', style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),),
-                  IconButton(
-                    icon: Icon(Icons.info_outline), // Use info outline icon
-                    onPressed: () {
-                      infoDialogueGenerate(context);
-                      print("Info button pressed!");
-                    },
-                  ),
-                ],
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      TemplateOption(text: 'Easy'),
-                      TemplateOption(text: 'Medium'),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      TemplateOption(text: 'Complex'),
-                      TemplateOption(text: 'Blank'),
-                    ],
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround, 
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.home),
-                    onPressed: () {
-                      Navigator.push(
-                        context, 
-                        MaterialPageRoute(builder: (context) => HomePage()),
-                      );
-                    },
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.edit_document),
-                    onPressed: () {
-                      Navigator.push(
-                        context, 
-                        MaterialPageRoute(builder: (context) => Courses()),
-                      );
-                    },
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.download), 
-                    onPressed: () {
-                      Navigator.push(
-                        context, 
-                        MaterialPageRoute(builder: (context) => Downloads()),
-                      );
-                    },
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.settings), 
-                    onPressed: () {
-                      Navigator.push(
-                        context, 
-                        MaterialPageRoute(builder: (context) => Settings()),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-Future<dynamic> infoDialogueGenerate(BuildContext context) {
-    return showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('Guide'),
-        content: Text('Select the template you want your assignment to be generated according to.'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text('Close'),
-          ),
-        ],
-      );
-    },
-  );
-  }
-}
+// class Template extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//           child: Padding(
+//             padding: const EdgeInsets.all(12.0),
+//             child: Column(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: [
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   IconButton(
+//                     icon: Icon(Icons.arrow_back), 
+//                     onPressed: () {
+//                       Navigator.push(
+//                         context, 
+//                         MaterialPageRoute(builder: (context) => HomePage()),
+//                       );
+//                     },
+//                   ),
+//                   Text('Templates', style: TextStyle(
+//                     fontSize: 16.0,
+//                     fontWeight: FontWeight.bold,
+//                   ),),
+//                   IconButton(
+//                     icon: Icon(Icons.info_outline), // Use info outline icon
+//                     onPressed: () {
+//                       infoDialogueGenerate(context);
+//                       print("Info button pressed!");
+//                     },
+//                   ),
+//                 ],
+//               ),
+//               Column(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Row(
+//                     mainAxisAlignment: MainAxisAlignment.spaceAround,
+//                     children: [
+//                       TemplateOption(text: 'Easy'),
+//                       TemplateOption(text: 'Medium'),
+//                     ],
+//                   ),
+//                   Row(
+//                     mainAxisAlignment: MainAxisAlignment.spaceAround,
+//                     children: [
+//                       TemplateOption(text: 'Complex'),
+//                       TemplateOption(text: 'Blank'),
+//                     ],
+//                   ),
+//                 ],
+//               ),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceAround, 
+//                 children: [
+//                   IconButton(
+//                     icon: Icon(Icons.home),
+//                     onPressed: () {
+//                       Navigator.push(
+//                         context, 
+//                         MaterialPageRoute(builder: (context) => HomePage()),
+//                       );
+//                     },
+//                   ),
+//                   IconButton(
+//                     icon: Icon(Icons.edit_document),
+//                     onPressed: () {
+//                       Navigator.push(
+//                         context, 
+//                         MaterialPageRoute(builder: (context) => Courses()),
+//                       );
+//                     },
+//                   ),
+//                   IconButton(
+//                     icon: Icon(Icons.download), 
+//                     onPressed: () {
+//                       Navigator.push(
+//                         context, 
+//                         MaterialPageRoute(builder: (context) => Downloads()),
+//                       );
+//                     },
+//                   ),
+//                   IconButton(
+//                     icon: Icon(Icons.settings), 
+//                     onPressed: () {
+//                       Navigator.push(
+//                         context, 
+//                         MaterialPageRoute(builder: (context) => Settings()),
+//                       );
+//                     },
+//                   ),
+//                 ],
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// Future<dynamic> infoDialogueGenerate(BuildContext context) {
+//     return showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//         title: Text('Guide'),
+//         content: Text('Select the template you want your assignment to be generated according to.'),
+//         actions: [
+//           TextButton(
+//             onPressed: () {
+//               Navigator.pop(context);
+//             },
+//             child: Text('Close'),
+//           ),
+//         ],
+//       );
+//     },
+//   );
+//   }
+// }
 
-class TemplateOption extends StatelessWidget {
-  const TemplateOption({
-    super.key,
-    required this.text,
-  });
-  final String text;
+// class TemplateOption extends StatelessWidget {
+//   const TemplateOption({
+//     super.key,
+//     required this.text,
+//   });
+//   final String text;
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: Card(
-        elevation: 5.0,
-        child: ElevatedButton(
-            onPressed: () {
-              // To be Implemented Module Template selection related to backend
-              switch (text) {
-                case 'Easy':
-                  template = 1;
-                  break;
-                case 'Medium':
-                  template = 2;
-                  break;
-                case 'Complex':
-                  template = 3;
-                  break;
-                case 'Blank':
-                  template = 4;
-                  break;
-                default:
-                  template = 4;
-              }
-              Navigator.push(
-                context, 
-                MaterialPageRoute(builder: (context) => Generator()),
-              );
-              print('button pressed!');
-            },
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0), 
-                ),
-            ),
-            child: SizedBox(
-              width: 95.0,
-              height: 95.0,
-              child: Center(
-                child: Text(
-                  text, style: TextStyle(
-                    fontSize: 22.0,
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.all(5.0),
+//       child: Card(
+//         elevation: 5.0,
+//         child: ElevatedButton(
+//             onPressed: () {
+//               // To be Implemented Module Template selection related to backend
+//               switch (text) {
+//                 case 'Easy':
+//                   template = 1;
+//                   break;
+//                 case 'Medium':
+//                   template = 2;
+//                   break;
+//                 case 'Complex':
+//                   template = 3;
+//                   break;
+//                 case 'Blank':
+//                   template = 4;
+//                   break;
+//                 default:
+//                   template = 4;
+//               }
+//               Navigator.push(
+//                 context, 
+//                 MaterialPageRoute(builder: (context) => Generator()),
+//               );
+//               print('button pressed!');
+//             },
+//             style: ElevatedButton.styleFrom(
+//               shape: RoundedRectangleBorder(
+//                 borderRadius: BorderRadius.circular(5.0), 
+//                 ),
+//             ),
+//             child: SizedBox(
+//               width: 95.0,
+//               height: 95.0,
+//               child: Center(
+//                 child: Text(
+//                   text, style: TextStyle(
+//                     fontSize: 22.0,
+//                     color: Colors.blue,
+//                     fontWeight: FontWeight.bold,
+//                   ),
+//                 ),
+//               ),
+//             ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class Courses extends StatelessWidget {
   @override
@@ -644,7 +646,7 @@ class Generator extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context, 
-                        MaterialPageRoute(builder: (context) => Template()),
+                        MaterialPageRoute(builder: (context) => showTemplates()),
                       );
                     },
                   ),
