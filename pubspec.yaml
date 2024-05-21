@@ -35,7 +35,7 @@ dependencies:
   provider: ^6.0.0
   theme_provider: ^0.6.0
   firebase_core:
-  firebase_auth: ^4.18.0
+  firebase_auth: 
   http: 
   path_provider: ^2.0.2
 
