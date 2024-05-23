@@ -25,6 +25,13 @@ jobs:
         - name: Build APK
           run: flutter build apk --release --split-per-abi
         
+        - name: Push to Releases
+          uses: ncipollo/release-action@v1
+          with:
+            artifacts: "build/app/outputs/apk/release/*" 
+            tag: v0.2.9
+            token: ${{ secrets.GITHUB_TOKEN  }}
+
         - name: Upload APK
           uses: actions/upload-artifact@v2
           with:

@@ -79,10 +79,8 @@ class HomePageState extends State<HomePage> {
     switch (selectedIndex) {
       case 0:
         page = Generator();
-        break;
       case 1:
         page = Placeholder();
-        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
