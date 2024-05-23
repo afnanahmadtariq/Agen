@@ -5,8 +5,6 @@ on:
       branches:
         - main
 
-name: Agen Andriod App Builder
-
 jobs:
     build-apk:
       runs-on: ubuntu-latest
