@@ -2,29 +2,28 @@ on:
     push:
       branches:
         - main
-  
+
+name: Agen Andriod App Builder
+
 jobs:
     build-apk:
       runs-on: ubuntu-latest
       steps:
-        - name: Checkout Repository
-          uses: actions/checkout@v2
+        - uses: actions/checkout@v3
+        - uses: actions/setup-java@v2
+          with:
+            distribution: 'zulu'
+            java-version: '11'
         
         - name: Setup Flutter
           uses: subosito/flutter-action@v2
           with:
-            flutter-version: '3.13.4'
+            channel: 'stable'
 
-        - uses: actions/checkout@v4
-        - uses: dart-lang/setup-dart@v1
-  
-        # - run: dart pub get
-        # - run: dart format --output=none --set-exit-if-changed .
-        # - run: dart analyze
-        # - run: dart test 
-        
+
+        - run: flutter pub get
         - name: Build APK
-          run: flutter build apk
+          run: flutter build apk --release --split-per-abi
         
         - name: Upload APK
           uses: actions/upload-artifact@v2
