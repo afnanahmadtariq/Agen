@@ -1,3 +1,5 @@
+name: Flutter Android Build
+
 on:
     push:
       branches:
@@ -30,4 +32,3 @@ jobs:
           with:
             name: app-apk
             path: build/app/outputs/flutter-apk/app-release.apk
-  
