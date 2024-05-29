@@ -10,7 +10,7 @@ class HtmlDisplayScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HTML Content'),
+        title: const Text('Assignment'),
       ),
       body: SingleChildScrollView(
         child: Padding(

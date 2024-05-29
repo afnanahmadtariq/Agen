@@ -7,24 +7,26 @@ import 'package:agen/inviteFriends.dart';
 import 'package:flutter/material.dart';
 
 class Settings extends StatelessWidget {
+  const Settings({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        title: Text('Setting'),
+        title: const Text('Setting'),
       ),
       body: ListView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         children: [
           // Profile Section
           Container(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(8.0),
@@ -33,11 +35,11 @@ class Settings extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.1),
                   spreadRadius: 1,
                   blurRadius: 8,
-                  offset: Offset(0, 4), // changes position of shadow
+                  offset: const Offset(0, 4), // changes position of shadow
                 ),
               ],
             ),
-            child: Column(
+            child: const Column(
               children: [
                 CircleAvatar(
                   radius: 40,
@@ -65,13 +67,13 @@ class Settings extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
 
           // Settings Options
           SettingsOption(
             icon: Icons.person_outline,
             title: 'Edit Profile',
-            onTap: () { Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfileScreen())); },
+            onTap: () { Navigator.push(context, MaterialPageRoute(builder: (context) => const EditProfileScreen())); },
           ),
           SettingsOption(
             icon: Icons.notifications_outlined,
@@ -93,7 +95,7 @@ class Settings extends StatelessWidget {
               ),
             ),
             onTap: () { 
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => const Languages())); 
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const Languages())); 
               },
           ),
           SettingsOption(
@@ -134,19 +136,19 @@ class SettingsOption extends StatelessWidget {
   final VoidCallback onTap;
 
   const SettingsOption({
-    Key? key,
+    super.key,
     required this.icon,
     required this.title,
     this.trailing,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(icon),
       title: Text(title),
-      trailing: trailing ?? Icon(Icons.arrow_forward_ios, size: 16),
+      trailing: trailing ?? const Icon(Icons.arrow_forward_ios, size: 16),
       onTap: onTap,
     );
   }

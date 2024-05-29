@@ -31,7 +31,8 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^1.2.1
-  flutter_html: 3.0.0-beta.2
+  flutter_html: ^3.0.0-beta.2
+  permission_handler: ^9.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -62,6 +63,9 @@ flutter:
   assets: 
     - assets/agen_logo.png
     - assets/logo.png
+    - assets/guide_image.png
+    - assets/flags/us.png
+    - assets/flags/uk.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

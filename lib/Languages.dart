@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart'; // Import for SVG icons
 
 class Languages extends StatefulWidget {
@@ -55,12 +56,12 @@ class _LanguagesState extends State<Languages> {
       {
         'name': 'English (US)',
         'code': 'en_US',
-        'flagAsset': 'assets/flags/us.svg', // Path to your SVG flag asset
+        'flagAsset': 'assets/flags/us.png', // Path to your SVG flag asset
       },
       {
         'name': 'English (UK)',
         'code': 'en_UK',
-        'flagAsset': 'assets/flags/uk.svg',
+        'flagAsset': 'assets/flags/uk.png',
       },
       // Add more languages here
     ];
@@ -74,7 +75,7 @@ class _LanguagesState extends State<Languages> {
         return RadioListTile<String>(
           title: Row(
             children: [
-              SvgPicture.asset(
+              Image.asset(
                 language['flagAsset'], // Load SVG flag
                 width: 24.0,
                 height: 16.0,

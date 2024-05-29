@@ -1,22 +1,9 @@
-
-import 'package:agen/API.dart';
-import 'package:agen/View.dart';
+import 'package:agen/api.dart';
+import 'package:agen/main.dart';
 import 'package:flutter/material.dart';
 
-Widget showGenerator() {
-  return const MyApp();
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Generator(),
-    );
-  }
-}
+final TextEditingController _controller = TextEditingController();
+final navigatorKey = GlobalKey<NavigatorState>();
 
 class Generator extends StatelessWidget {
   const Generator({super.key});
@@ -27,9 +14,12 @@ class Generator extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading:  Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset('assets/logo.png',), // Replace with your logo asset
+        leading:  GestureDetector(
+          onTap: () { Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));},
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Image.asset('assets/logo.png',), // Replace with your logo asset
+          ),
         ),
         actions: [
           IconButton(
@@ -58,7 +48,7 @@ class Generator extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 120),
             Wrap(
               spacing: 8,
               runSpacing: 8,
@@ -84,33 +74,40 @@ class Generator extends StatelessWidget {
                 ),
               ],
             ),
-            const Spacer(),
-            Row(
-              children: [
-                const Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Start generating...',
-                      border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                FloatingActionButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const HtmlDisplayScreen(htmlContent: 'ok',)));
-                  },
-                  child: const Icon(Icons.arrow_upward),
-                ),
-              ],
-            ),
+            
           ],
         ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Row(
+                children: [
+                   Expanded(
+                    child: TextField(
+                    controller: _controller,
+                      decoration: const InputDecoration(
+                        hintText: 'Start generating...',
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  FloatingActionButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Loading()));
+                      invokeAzureFunction(_controller.text, context);
+                    },
+                    child: const Icon(Icons.arrow_upward),
+                  ),
+                ],
+              ),
       ),
     );
   }
 }
+
+
 
 class FeatureButton extends StatelessWidget {
   final IconData icon;
@@ -133,14 +130,14 @@ class FeatureButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.0),
         ),
         side: BorderSide(color: Colors.grey.shade300),
-        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 10.0),
       ),
       onPressed: () {
         // Feature button action
       },
       child: Column(
         children: [
-          Icon(icon, size: 40, color: Colors.blue),
+          Icon(icon, size: 50, color: Colors.blue),
           const SizedBox(height: 8),
           Text(label, textAlign: TextAlign.center),
         ],
@@ -171,13 +168,7 @@ class CustomButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
       ),
       onPressed: () {
-        onPressed(); // Call the provided callback function
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Button clicked: $label'),
-            duration: const Duration(milliseconds: 1500), // Display for 1.5 seconds
-          ),
-        );
+        _controller.text = label;
       },
       child: Text(label),
     );

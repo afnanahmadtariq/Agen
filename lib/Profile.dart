@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class EditProfileScreen extends StatelessWidget {
+  const EditProfileScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -161,10 +163,10 @@ class ProfileDropdownField extends StatelessWidget {
   final List<String> items;
 
   const ProfileDropdownField({
-    Key? key,
+    super.key,
     required this.label,
     required this.items,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,8 @@
 import 'package:agen/Courses.dart';
 import 'package:agen/Downloads.dart';
+import 'package:agen/Guide.dart';
+import 'package:agen/ScreenFactory.dart';
 import 'package:agen/Settings.dart';
-import 'package:agen/Templates.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -24,57 +25,20 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
   Widget build(BuildContext context) {
+    Widget page = const Home();
+
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/agen_logo.png', // Replace with your logo asset path
-              height: 100,
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'Welcome to Agen.',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              'Your go to solution for generating assignments with just one prompt. '
-              'Agen scraps of the web for you and save you the hassle for surfing different websites.',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 14),
-            ),
-            const SizedBox(height: 32),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                HomeButton(
-                  icon: Icons.print,
-                  label: 'Assignment Generator',
-                  color: Colors.teal,
-                  onPressed: (){ 
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Template())); 
-                   },
-                ),
-                HomeButton(
-                  icon: Icons.book,
-                  label: 'Application Guide',
-                  color: Colors.brown, onPressed: () { 
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const TemplateSelector())); 
-                    },
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
+      body: page,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0, // The current index
         items: const <BottomNavigationBarItem>[
@@ -103,16 +67,76 @@ class HomePage extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
               break;
             case 1:
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Courses()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Screenfactory.create('Courses')));
               break;
             case 2:
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Downloads()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Screenfactory.create('Downloads')));
               break;
             case 3:
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Settings()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const Settings()));
               break;
           }
         },
+      ),
+    );
+  }
+}
+
+class Home extends StatelessWidget{
+  const Home({super.key});
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body:  Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/agen_logo.png', // Replace with your logo asset path
+              height: 100,
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'Welcome to Agen.',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'Your go to solution for generating assignments with just one prompt. '
+              'Agen scraps of the web for you and save you the hassle for surfing different websites.',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 14),
+            ),
+            const SizedBox(height: 32),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Screenfactory.create('Courses')));
+                  },  
+                  child: const HomeButton(
+                    icon: Icons.print,
+                    label: 'Assignment Generator',
+                    color: Colors.teal,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const GuidePopups()));
+                  },  
+                  child: const HomeButton(
+                    icon: Icons.book,
+                    label: 'Application Guide',
+                    color: Colors.brown, 
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -123,7 +147,7 @@ class HomeButton extends StatelessWidget {
   final String label;
   final Color color;
 
-  const HomeButton({super.key, required this.icon, required this.label, required this.color, required Null Function() onPressed});
+  const HomeButton({super.key, required this.icon, required this.label, required this.color});
 
   @override
   Widget build(BuildContext context) {
