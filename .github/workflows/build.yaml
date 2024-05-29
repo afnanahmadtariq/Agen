@@ -13,7 +13,7 @@ jobs:
         - name: Set environment variables
           env:
             AZURE_FUNCTION_CODE: ${{ secrets.AZURE_FUNCTION_CODE }}  # Optional
-          run: echo "::set-env name=AZURE_FUNCTION_CODE::$AZURE_FUNCTION_CODE"
+          run: echo " name=AZURE_FUNCTION_CODE is $AZURE_FUNCTION_CODE"
 
         - uses: actions/setup-java@v2
           with:
