@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:agen/api.dart';
 import 'package:agen/main.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +8,11 @@ final TextEditingController _controller = TextEditingController();
 final navigatorKey = GlobalKey<NavigatorState>();
 
 class Generator extends StatelessWidget {
-  const Generator({super.key});
+  var template = 'b';
+  
+  Generator(String s, {super.key}){
+    template = s;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +45,11 @@ class Generator extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 FeatureButton(
-                  icon: Icons.emoji_objects, // Corrected icon name
+                  icon: Icons.emoji_objects,
                   label: 'Extra Clever Scraping',
                 ),
                 FeatureButton(
-                  icon: Icons.flash_on, // Corrected icon name
+                  icon: Icons.flash_on,
                   label: 'Fast And Accurate',
                 ),
               ],
@@ -96,7 +102,7 @@ class Generator extends StatelessWidget {
                   FloatingActionButton(
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const Loading()));
-                      invokeAzureFunction(_controller.text, context);
+                      invokeAzureFunction(_controller.text, template, context);
                     },
                     child: const Icon(Icons.arrow_upward),
                   ),

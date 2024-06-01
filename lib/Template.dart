@@ -27,8 +27,7 @@ class Template extends Screen {
             color: Colors.red,
             label: 'Easy',
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const Generator())); 
-              // Handle Easy template selection
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Generator( "e"))); 
             },
           ),
           _buildTemplateOption(
@@ -37,8 +36,7 @@ class Template extends Screen {
             color: Colors.blue,
             label: 'Medium',
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const Generator())); 
-              // Handle Medium template selection
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Generator('m'))); 
             },
           ),
           _buildTemplateOption(
@@ -47,8 +45,7 @@ class Template extends Screen {
             color: Colors.blueAccent,
             label: 'Complex',
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const Generator())); 
-              // Handle Complex template selection
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Generator('h'))); 
             },
           ),
           _buildTemplateOption(
@@ -57,8 +54,7 @@ class Template extends Screen {
             color: Colors.black,
             label: 'Blank',
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const Generator())); 
-              // Handle Blank template selection
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Generator('b'))); 
             },
           ),
         ],

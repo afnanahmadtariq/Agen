@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:agen/Generator.dart';
 import 'package:agen/View.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
 
@@ -50,18 +50,19 @@ class _LoadingState extends State<Loading> {
   }
 }
 
-Future<void> invokeAzureFunction(String question, context) async {
-  final azureFunctionCode = Platform.environment['AZURE_FUNCTION_CODE'];
+Future<void> invokeAzureFunction(String question,String template, context) async {
+  await dotenv.load(fileName: ".env");
+  final azureFunctionCode = dotenv.get('AZURE_FUNCTION_CODE');
   const functionUrl = 'https://agen-func.azurewebsites.net/api/agen';
   
   
   // // Parameters for the request
   var params = {
     "code": azureFunctionCode,
-    "question": question
+    "question": question,
+    "template": template,
   };
-  
-   final uri = Uri.parse(functionUrl).replace(queryParameters: params);
+  final uri = Uri.parse(functionUrl).replace(queryParameters: params);
 
   // Make a GET request with the encoded URL
   final response = await http.get(uri);

@@ -7,13 +7,13 @@ class Screenfactory {
   static Screen create(String screen){
     switch(screen){
       case "Courses":
-      return Courses();
+        return Courses();
       case "Template":
-      return Template();
+        return Template();
       case "Downloads":
-      return Downloads();
+        return Downloads();
       default:
-      return Courses();
+        return Courses();
     }
   }
 }
