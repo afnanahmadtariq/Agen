@@ -33,6 +33,6 @@ jobs:
           uses: ncipollo/release-action@v1
           with:
             artifacts: "build/app/outputs/apk/release/*" 
-            tag: v0.3.1
+            tag: v0.3.2
             token: ${{ secrets.TOKEN }}
 
