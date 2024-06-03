@@ -1,4 +1,4 @@
-import 'package:agen/Settings.dart';
+import 'package:agen/settings.dart';
 import 'package:agen/main.dart';
 import 'package:agen/screen_factory.dart';
 import 'package:flutter/material.dart';

@@ -1,8 +1,8 @@
 import 'package:agen/languages.dart';
-import 'package:agen/Notfications.dart';
-import 'package:agen/Profile.dart';
+import 'package:agen/notfications.dart';
+import 'package:agen/profile.dart';
 import 'package:agen/security.dart';
-import 'package:agen/TNC.dart';
+import 'package:agen/tnc.dart';
 import 'package:agen/invite_friends.dart';
 import 'package:flutter/material.dart';
 
