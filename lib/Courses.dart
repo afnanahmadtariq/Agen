@@ -1,6 +1,5 @@
-import 'package:agen/Screen.dart';
-import 'package:agen/ScreenFactory.dart';
-import 'package:agen/Template.dart';
+import 'package:agen/screen.dart';
+import 'package:agen/screen_factory.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable

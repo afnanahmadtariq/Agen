@@ -1,13 +1,16 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:agen/screen.dart';
 import 'package:agen/api.dart';
-import 'package:agen/main.dart';
 import 'package:flutter/material.dart';
 
 final TextEditingController _controller = TextEditingController();
 final navigatorKey = GlobalKey<NavigatorState>();
 
-class Generator extends StatelessWidget {
+class Generator extends Screen{
+  @override
+  // ignore: overridden_fields
+  String label = "Generator";
   var template = 'b';
   
   Generator(String s, {super.key}){
@@ -17,97 +20,94 @@ class Generator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading:  GestureDetector(
-          onTap: () { Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));},
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Image.asset('assets/logo.png',), // Replace with your logo asset
+      resizeToAvoidBottomInset: true,
+      appBar: appBar(context),
+      body: body(context),
+      bottomSheet: bottom(context)
+    );
+  }
+
+  @override
+  info(context){
+    infoPopUp(context, "Enter the prompt for generating assignment or you can get started with the given suggestions.");
+  }
+  @override
+  Widget body(context){
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              FeatureButton(
+                icon: Icons.emoji_objects,
+                label: 'Extra Clever Scraping',
+              ),
+              FeatureButton(
+                icon: Icons.flash_on,
+                label: 'Fast And Accurate',
+              ),
+            ],
           ),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.info_outline, color: Colors.blue),
-            onPressed: () {
-              // Info button action
-            },
+          const SizedBox(height: 120),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            alignment: WrapAlignment.center,
+            children: [
+              CustomButton(
+                label: 'Load-shedding in Pakistan, now',
+                onPressed: () {
+                  // Button action
+                },
+              ),
+              CustomButton(
+                label: 'Global Warming',
+                onPressed: () {
+                  // Button action
+                },
+              ),
+              CustomButton(
+                label: 'Terrorism',
+                onPressed: () {
+                  // Button action
+                },
+              ),
+            ],
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                FeatureButton(
-                  icon: Icons.emoji_objects,
-                  label: 'Extra Clever Scraping',
-                ),
-                FeatureButton(
-                  icon: Icons.flash_on,
-                  label: 'Fast And Accurate',
-                ),
-              ],
-            ),
-            const SizedBox(height: 120),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              alignment: WrapAlignment.center,
-              children: [
-                CustomButton(
-                  label: 'Load-shedding in Pakistan, now',
-                  onPressed: () {
-                    // Button action
-                  },
-                ),
-                CustomButton(
-                  label: 'Global Warming',
-                  onPressed: () {
-                    // Button action
-                  },
-                ),
-                CustomButton(
-                  label: 'Terrorism',
-                  onPressed: () {
-                    // Button action
-                  },
-                ),
-              ],
-            ),
+    );
+  }
+  @override
+  Widget bottom(context) {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Row(
+        children: [
+            Expanded(
+            child: TextField(
             
-          ],
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Row(
-                children: [
-                   Expanded(
-                    child: TextField(
-                    controller: _controller,
-                      decoration: const InputDecoration(
-                        hintText: 'Start generating...',
-                        border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  FloatingActionButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Loading()));
-                      invokeAzureFunction(_controller.text, template, context);
-                    },
-                    child: const Icon(Icons.arrow_upward),
-                  ),
-                ],
+            controller: _controller,
+              decoration: const InputDecoration(
+                hintText: 'Start generating...',
+                border: OutlineInputBorder(),
+                contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
               ),
+            ),
+          ),
+          const SizedBox(width: 8),
+          FloatingActionButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const Loading()));
+              invokeAzureFunction(_controller.text, template, context);
+            },
+            child: const Icon(Icons.arrow_upward),
+          ),
+        ],
       ),
     );
   }

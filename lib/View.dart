@@ -15,14 +15,38 @@ class HtmlDisplayScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Html(
-            data: htmlContent,
-            style: const {
-              // Optional styling for specific HTML elements
-              // Refer to flutter_html documentation for available styles
-            },
+          child: Column(
+            children: [
+              Html(
+                data: htmlContent,
+                style: const {
+                  // Optional styling for specific HTML elements
+                  // Refer to flutter_html documentation for available styles
+                },
+              ),
+              const SizedBox(
+                height: 80,
+              ),
+            ],
           ),
         ),
+      ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(
+          left: 16.0,
+          right: 16.0,
+          bottom: 16.0,
+          
+        ),
+        child: FloatingActionButton.extended(
+          backgroundColor: const Color.fromARGB(255, 30, 0, 255),
+          foregroundColor: Colors.white,
+          icon: const Icon(Icons.download),
+          onPressed: (){
+            
+          }, 
+          label: const Text("Download")
+          ),
       ),
     );
   }

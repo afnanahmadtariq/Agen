@@ -1,7 +1,7 @@
-import 'package:agen/Courses.dart';
-import 'package:agen/Downloads.dart';
-import 'package:agen/Screen.dart';
-import 'package:agen/Template.dart';
+import 'package:agen/courses.dart';
+import 'package:agen/downloads.dart';
+import 'package:agen/screen.dart';
+import 'package:agen/template.dart';
 
 class Screenfactory {
   static Screen create(String screen){

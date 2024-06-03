@@ -1,4 +1,4 @@
-import 'package:agen/Screen.dart';
+import 'package:agen/screen.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable

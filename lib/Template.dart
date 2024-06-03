@@ -1,5 +1,5 @@
-import 'package:agen/Generator.dart';
-import 'package:agen/Screen.dart';
+import 'package:agen/generator.dart';
+import 'package:agen/screen.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -8,9 +8,6 @@ class Template extends Screen {
   @override
   // ignore: overridden_fields
   String label = 'Select a Template';
-  @override
-  // ignore: overridden_fields
-  int index = 2;
 
   @override
   Widget body(context){

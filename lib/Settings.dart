@@ -1,9 +1,9 @@
-import 'package:agen/Languages.dart';
+import 'package:agen/languages.dart';
 import 'package:agen/Notfications.dart';
 import 'package:agen/Profile.dart';
-import 'package:agen/Security.dart';
+import 'package:agen/security.dart';
 import 'package:agen/TNC.dart';
-import 'package:agen/inviteFriends.dart';
+import 'package:agen/invite_friends.dart';
 import 'package:flutter/material.dart';
 
 class Settings extends StatelessWidget {
