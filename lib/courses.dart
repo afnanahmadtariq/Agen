@@ -50,6 +50,7 @@ class Courses extends Screen {
               itemCount: courses.length,
               itemBuilder: (context, index) {
                 return CourseButton(
+                  courses[index]['name'],
                   icon: courses[index]['icon'],
                   label: courses[index]['name'],
                   color: courses[index]['color'],
@@ -72,14 +73,17 @@ class CourseButton extends StatelessWidget {
   final IconData icon;
   final String label;
   final Color color;
+  var course;
 
-  const CourseButton({super.key, required this.icon, required this.label, required this.color});
+  CourseButton(String c, {super.key, required this.icon, required this.label, required this.color}){
+    course = c;
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Screenfactory.create('Template')));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Screenfactory.create('Template', course)));
       },
       child: Container(
         decoration: BoxDecoration(

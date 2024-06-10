@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:agen/guide.dart';
 import 'package:agen/settings.dart';
 import 'package:agen/screen_factory.dart';
@@ -16,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Agen',
         theme: ThemeData(
           useMaterial3: true,
@@ -68,10 +67,10 @@ class _HomePageState extends State<HomePage> {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
               break;
             case 1:
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Screenfactory.create('Courses')));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Screenfactory.create('Courses', '')));
               break;
             case 2:
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Screenfactory.create('Downloads')));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Screenfactory.create('Downloads', '')));
               break;
             case 3:
               Navigator.push(context, MaterialPageRoute(builder: (context) => const Settings()));
@@ -116,7 +115,7 @@ class Home extends StatelessWidget{
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Screenfactory.create('Courses')));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Screenfactory.create('Courses', '')));
                   },  
                   child: const HomeButton(
                     icon: Icons.print,

@@ -1,5 +1,4 @@
 // ignore_for_file: must_be_immutable
-
 import 'package:agen/screen.dart';
 import 'package:agen/api.dart';
 import 'package:flutter/material.dart';
@@ -9,13 +8,11 @@ final navigatorKey = GlobalKey<NavigatorState>();
 
 class Generator extends Screen{
   @override
-  // ignore: overridden_fields
   String label = "Generator";
-  var template = 'b';
+  final String course;
+  final String template;
   
-  Generator(String s, {super.key}){
-    template = s;
-  }
+  Generator({super.key, required this.course, required this.template});
 
   @override
   Widget build(BuildContext context) {
@@ -90,8 +87,7 @@ class Generator extends Screen{
         children: [
             Expanded(
             child: TextField(
-            
-            controller: _controller,
+              controller: _controller,
               decoration: const InputDecoration(
                 hintText: 'Start generating...',
                 border: OutlineInputBorder(),
@@ -102,8 +98,13 @@ class Generator extends Screen{
           const SizedBox(width: 8),
           FloatingActionButton(
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const Loading()));
-              invokeAzureFunction(_controller.text, template, context);
+              if(_controller.text.isNotEmpty){
+                loading(context);
+                generateAssignment(_controller.text, template, course, context);
+              }
+              else{
+                warnning(context);
+              }
             },
             child: const Icon(Icons.arrow_upward),
           ),
@@ -111,9 +112,80 @@ class Generator extends Screen{
       ),
     );
   }
+  Future<dynamic> warnning(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Warnning!', textAlign: TextAlign.center,),
+          content: const Text('Please write some topic to generate Assignment!', textAlign: TextAlign.center,),
+          actions: [
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Close'),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+ 
+  Future<dynamic> loading(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Scaffold(
+          backgroundColor: Colors.transparent,
+          body: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                width: 300,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: const Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(height: 20),
+                    Icon(Icons.auto_awesome, size: 100, color: Colors.blue),
+                    SizedBox(height: 20),
+                    Text(
+                      'Generating Assignment',
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'Your Assignment is under Process. It will be ready soon.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    CircularProgressIndicator(),
+                    SizedBox(height: 20),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
 }
-
-
 
 class FeatureButton extends StatelessWidget {
   final IconData icon;

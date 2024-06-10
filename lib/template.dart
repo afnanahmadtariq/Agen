@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class Template extends Screen {
-  Template({super.key});
+  final String course;
+  Template({super.key, required this.course});
   @override
   // ignore: overridden_fields
   String label = 'Select a Template';
@@ -24,7 +25,7 @@ class Template extends Screen {
             color: Colors.red,
             label: 'Easy',
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Generator( "e"))); 
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Generator(course: course, template: 'Easy'))); 
             },
           ),
           _buildTemplateOption(
@@ -33,7 +34,7 @@ class Template extends Screen {
             color: Colors.blue,
             label: 'Medium',
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Generator('m'))); 
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Generator(course: course, template: 'Medium'))); 
             },
           ),
           _buildTemplateOption(
@@ -42,7 +43,7 @@ class Template extends Screen {
             color: Colors.blueAccent,
             label: 'Complex',
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Generator('h'))); 
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Generator(course: course, template: 'Complex'))); 
             },
           ),
           _buildTemplateOption(
@@ -51,7 +52,7 @@ class Template extends Screen {
             color: Colors.black,
             label: 'Blank',
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Generator('b'))); 
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Generator(course: course, template: 'Blank'))); 
             },
           ),
         ],

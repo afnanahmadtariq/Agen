@@ -22,6 +22,7 @@ class Screen extends StatelessWidget {
   PreferredSizeWidget appBar(context){
     return AppBar(
       title: Text(label),
+      centerTitle: true,
       backgroundColor: Colors.white,
       foregroundColor: Colors.black,
       elevation: 0,
@@ -72,10 +73,10 @@ class Screen extends StatelessWidget {
             Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
             break;
           case 1:
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Screenfactory.create('Courses')));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Screenfactory.create('Courses', '')));
             break;
           case 2:
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Screenfactory.create('Downloads')));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Screenfactory.create('Downloads', '')));
             break;
           case 3:
             Navigator.push(context, MaterialPageRoute(builder: (context) => const Settings()));
