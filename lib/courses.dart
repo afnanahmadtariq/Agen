@@ -25,40 +25,43 @@ class Courses extends Screen {
 
   @override
   Widget body(context){
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          TextField(
-            decoration: InputDecoration(
-              hintText: 'Search for..',
-              prefixIcon: const Icon(Icons.search),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12.0),
+    return Scaffold(
+      backgroundColor: Theme.of(context).cardColor,
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Search for..',
+                prefixIcon: const Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 16),
-          Expanded(
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-                childAspectRatio: 1,
+            const SizedBox(height: 16),
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                  childAspectRatio: 1,
+                ),
+                itemCount: courses.length,
+                itemBuilder: (context, index) {
+                  return CourseButton(
+                    courses[index]['name'],
+                    icon: courses[index]['icon'],
+                    label: courses[index]['name'],
+                    color: courses[index]['color'],
+                  );
+                },
               ),
-              itemCount: courses.length,
-              itemBuilder: (context, index) {
-                return CourseButton(
-                  courses[index]['name'],
-                  icon: courses[index]['icon'],
-                  label: courses[index]['name'],
-                  color: courses[index]['color'],
-                );
-              },
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

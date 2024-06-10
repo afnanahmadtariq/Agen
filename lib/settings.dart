@@ -5,13 +5,20 @@ import 'package:agen/security.dart';
 import 'package:agen/tnc.dart';
 import 'package:agen/invite_friends.dart';
 import 'package:flutter/material.dart';
+import 'package:agen/theme.dart';
 
-class Settings extends StatelessWidget {
+class Settings extends StatefulWidget {
   const Settings({super.key});
 
   @override
+  State<Settings> createState() => _SettingsState();
+}
+
+class _SettingsState extends State<Settings> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).cardColor,
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -28,7 +35,7 @@ class Settings extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.circular(8.0),
               boxShadow: [
                 BoxShadow(
@@ -95,13 +102,15 @@ class Settings extends StatelessWidget {
               ),
             ),
             onTap: () { 
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const Languages())); 
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const ThemePage())); 
               },
           ),
           SettingsOption(
-            icon: Icons.dark_mode_outlined,
-            title: 'Dark Mode',
-            onTap: () {},
+            icon: Icons.format_paint_rounded,
+            title: 'Theme',
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const ThemePage())); 
+            },
           ),
           SettingsOption(
             icon: Icons.description_outlined,

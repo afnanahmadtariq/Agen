@@ -1,10 +1,18 @@
 import 'package:agen/guide.dart';
 import 'package:agen/settings.dart';
 import 'package:agen/screen_factory.dart';
+import 'package:agen/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:agen/theme_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -16,10 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Agen',
-        theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
-        ),
+        theme: Provider.of<ThemeProvider>(context).themeData,
       home: const HomePage(),
     );
   }
@@ -35,10 +40,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    Widget page = const Home();
 
     return Scaffold(
-      body: page,
+      body: const Home(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0, // The current index
         items: const <BottomNavigationBarItem>[
@@ -59,7 +63,7 @@ class _HomePageState extends State<HomePage> {
             label: 'Settings',
           ),
         ],
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Theme.of(context).colorScheme.primary,
         unselectedItemColor: Colors.grey,
         onTap: (index) {
           switch (index) {
@@ -88,6 +92,7 @@ class Home extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).cardColor,
       body:  Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -155,7 +160,7 @@ class HomeButton extends StatelessWidget {
       width: 150,
       height: 150,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
         boxShadow: const [
           BoxShadow(
@@ -173,8 +178,8 @@ class HomeButton extends StatelessWidget {
           Text(
             label,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Colors.black,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),

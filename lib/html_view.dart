@@ -1,6 +1,10 @@
 
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:agen/popUps.dart';
 import 'package:agen/save.dart';
+import 'package:agen/screen_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
@@ -26,6 +30,7 @@ class HtmlView extends StatelessWidget {
             //   if (element.localName == 'img') {
             //     // Extract image source (URL or data URI)
             //     String src = element.attributes['src']!;
+            //     print(element.localName);
 
             //     // If using data URI, decode and display image
             //     if (src.startsWith('data:')) {
@@ -61,9 +66,7 @@ class HtmlView extends StatelessWidget {
             Popups.loading(context);
             try {
               print('dab giya');
-              await Save.downloadPdfFile(htmlContent, title);
-              // ignore: use_build_context_synchronously
-              Navigator.pop(context);
+              await Save.downloadPdfFile(context, htmlContent, title);
               // Show a success message to the user
             } catch (error) {
               // Handle download errors
@@ -75,4 +78,6 @@ class HtmlView extends StatelessWidget {
       ),
     );
   }
+
 }
+

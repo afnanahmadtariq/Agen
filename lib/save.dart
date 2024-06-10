@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:agen/screen_factory.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:html_to_pdf_plus/html_to_pdf_plus.dart';
 import 'package:path_provider/path_provider.dart';
@@ -18,7 +19,7 @@ class Save{
     }
   }
 
-  static Future<void> downloadPdfFile(String htmlContent, String fileName) async {
+  static Future<void> downloadPdfFile(BuildContext context, String htmlContent, String fileName) async {
     print('a giya');
     requestStoragePermission();
     print('ho gai');
@@ -50,6 +51,101 @@ class Save{
     );
     // Show a success message (optional)
     print('PDF downloaded successfully to $filePath');
+    Navigator.pop(context);
+    downloadComplete(context, filePath);
+  }
+
+
+  static Future<dynamic> downloadComplete(BuildContext context, String filePath) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+       return Scaffold(
+          backgroundColor: Colors.transparent, // Background color similar to the image
+          body: Center(
+            child: Container(
+              width: 300, // Width of the card
+              padding: const EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15.0),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 10.0,
+                    offset: Offset(0, 5),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Align(
+                    alignment: Alignment.topRight,
+                    child: Icon(Icons.close, color: Colors.grey),
+                  ),
+                  const SizedBox(height: 10.0),
+                  const Icon(Icons.picture_as_pdf_rounded),
+                  const SizedBox(height: 20.0),
+                  const Text(
+                    'Your PDF File Is Downloaded',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 10.0),
+                  const Text(
+                    'Click the below button to View pdf or Downloads',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      color: Colors.black54,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 20.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.push(context, MaterialPageRoute(builder: (context) =>  PDFView(filePath: filePath)));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          // primary: const Color(0xFFF8B400), // Yellow color
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                        icon: const Icon(Icons.remove_red_eye),
+                        label: const Text('View PDF'),
+                      ),
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Screenfactory.create('Downloads', '')));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          // primary: const Color(0xFF007BFF), // Blue color
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                        icon: const Icon(Icons.download),
+                        label: const Text('Downloads'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 }
   

@@ -12,50 +12,53 @@ class Template extends Screen {
 
   @override
   Widget body(context){
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: GridView.count(
-        crossAxisCount: 2,
-        crossAxisSpacing: 16.0,
-        mainAxisSpacing: 16.0,
-        children: <Widget>[
-          _buildTemplateOption(
-            context,
-            icon: Icons.assignment,
-            color: Colors.red,
-            label: 'Easy',
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Generator(course: course, template: 'Easy'))); 
-            },
-          ),
-          _buildTemplateOption(
-            context,
-            icon: Icons.edit,
-            color: Colors.blue,
-            label: 'Medium',
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Generator(course: course, template: 'Medium'))); 
-            },
-          ),
-          _buildTemplateOption(
-            context,
-            icon: Icons.playlist_play,
-            color: Colors.blueAccent,
-            label: 'Complex',
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Generator(course: course, template: 'Complex'))); 
-            },
-          ),
-          _buildTemplateOption(
-            context,
-            icon: Icons.insert_drive_file,
-            color: Colors.black,
-            label: 'Blank',
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Generator(course: course, template: 'Blank'))); 
-            },
-          ),
-        ],
+    return Scaffold(
+      backgroundColor: Theme.of(context).cardColor,
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: GridView.count(
+          crossAxisCount: 2,
+          crossAxisSpacing: 16.0,
+          mainAxisSpacing: 16.0,
+          children: <Widget>[
+            _buildTemplateOption(
+              context,
+              icon: Icons.assignment,
+              color: Colors.red,
+              label: 'Easy',
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Generator(course: course, template: 'Easy'))); 
+              },
+            ),
+            _buildTemplateOption(
+              context,
+              icon: Icons.edit,
+              color: Colors.blue,
+              label: 'Medium',
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Generator(course: course, template: 'Medium'))); 
+              },
+            ),
+            _buildTemplateOption(
+              context,
+              icon: Icons.playlist_play,
+              color: Colors.blueAccent,
+              label: 'Complex',
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Generator(course: course, template: 'Complex'))); 
+              },
+            ),
+            _buildTemplateOption(
+              context,
+              icon: Icons.insert_drive_file,
+              color: Colors.black,
+              label: 'Blank',
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Generator(course: course, template: 'Blank'))); 
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

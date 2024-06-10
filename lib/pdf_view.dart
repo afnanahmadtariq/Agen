@@ -3,21 +3,7 @@ import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'dart:async';
-// Might already be imported in your project
-//
 
-void main() => runApp(const App());
-
-class App extends StatelessWidget {
-  const App({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: View(),
-    );
-  }
-}
 
 class View extends StatefulWidget {
   const View({super.key, this.progressExample = false});
@@ -98,27 +84,6 @@ class _ViewState extends State<View> {
       ),
     );
   }
-}
-
-class pdf extends StatelessWidget {
-  final String filePath;
-  final Uint8List data;
-
-  const pdf({super.key, required this.filePath, required this.data});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Assignment'),
-      ),
-      body: SingleChildScrollView(
-        child: PDFView(filePath: filePath),
-      ),
-      
-    );
-  }
-
 }
 
 

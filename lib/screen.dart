@@ -40,7 +40,7 @@ class Screen extends StatelessWidget {
     return this;
   }
   Widget bottom(context){
-    var selectedItemColor = Colors.blue;
+    var selectedItemColor = Theme.of(context).colorScheme.primary;
     if (index == -1){
       selectedItemColor = Colors.grey;
       index = 0;
