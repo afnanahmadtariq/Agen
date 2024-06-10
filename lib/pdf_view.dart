@@ -1,90 +1,89 @@
 import 'dart:typed_data';
-import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'dart:async';
 
 
-class View extends StatefulWidget {
-  const View({super.key, this.progressExample = false});
+// class View extends StatefulWidget {
+//   const View({super.key, this.progressExample = false});
 
-  final bool progressExample;
+//   final bool progressExample;
 
-  @override
-  State<View> createState() => _ViewState();
-}
+//   @override
+//   State<View> createState() => _ViewState();
+// }
 
-class _ViewState extends State<View> {
-  bool _isLoading = true;
-  late PDFDocument document;
+// class _ViewState extends State<View> {
+//   bool _isLoading = true;
+//   late PDFDocument document;
 
-  @override
-  void initState() {
-    super.initState();
-    loadDocument();
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     loadDocument();
+//   }
 
-  loadDocument() async {
-    document = await PDFDocument.fromAsset('assets/tes.pdf');
+//   loadDocument() async {
+//     document = await PDFDocument.fromAsset('assets/tes.pdf');
 
-    setState(() => _isLoading = false);
-  }
+//     setState(() => _isLoading = false);
+//   }
 
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('PDFViewer'),
-      ),
-      body: Center(
-        child: _isLoading ? const Center(child: CircularProgressIndicator()) : 
-        PDFViewer(
-          document: document,
-          lazyLoad: false,
-          zoomSteps: 2,
-          numberPickerConfirmWidget: const Text( "Confirm",),
-          //uncomment below line to preload all pages
-          // lazyLoad: false,
-          // uncomment below line to scroll vertically
-          scrollDirection: Axis.vertical,
-          //uncomment below code to replace bottom navigation with your own
-          // navigationBuilder:(context, page, totalPages, jumpToPage, animateToPage) {
-          //   return ButtonBar(
-          //     alignment: MainAxisAlignment.spaceEvenly,
-          //     children: <Widget>[
-          //       IconButton(
-          //         icon: const Icon(Icons.first_page),
-          //         onPressed: () {
-          //           jumpToPage(page: 0);
-          //         },
-          //       ),
-          //       IconButton(
-          //         icon: const Icon(Icons.arrow_back),
-          //         onPressed: () {
-          //           animateToPage(page: page! - 2);
-          //         },
-          //       ),
-          //       IconButton(
-          //         icon: const Icon(Icons.arrow_forward),
-          //         onPressed: () {
-          //           animateToPage(page: page);
-          //         },
-          //       ),
-          //       IconButton(
-          //         icon: const Icon(Icons.last_page),
-          //         onPressed: () {
-          //           jumpToPage(page: totalPages! - 1);
-                  // },
-                // ),
-              // ],
-            // );
-          // }, 
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('PDFViewer'),
+//       ),
+//       body: Center(
+//         child: _isLoading ? const Center(child: CircularProgressIndicator()) : 
+//         PDFViewer(
+//           document: document,
+//           lazyLoad: false,
+//           zoomSteps: 2,
+//           numberPickerConfirmWidget: const Text( "Confirm",),
+//           //uncomment below line to preload all pages
+//           // lazyLoad: false,
+//           // uncomment below line to scroll vertically
+//           scrollDirection: Axis.vertical,
+//           //uncomment below code to replace bottom navigation with your own
+//           // navigationBuilder:(context, page, totalPages, jumpToPage, animateToPage) {
+//           //   return ButtonBar(
+//           //     alignment: MainAxisAlignment.spaceEvenly,
+//           //     children: <Widget>[
+//           //       IconButton(
+//           //         icon: const Icon(Icons.first_page),
+//           //         onPressed: () {
+//           //           jumpToPage(page: 0);
+//           //         },
+//           //       ),
+//           //       IconButton(
+//           //         icon: const Icon(Icons.arrow_back),
+//           //         onPressed: () {
+//           //           animateToPage(page: page! - 2);
+//           //         },
+//           //       ),
+//           //       IconButton(
+//           //         icon: const Icon(Icons.arrow_forward),
+//           //         onPressed: () {
+//           //           animateToPage(page: page);
+//           //         },
+//           //       ),
+//           //       IconButton(
+//           //         icon: const Icon(Icons.last_page),
+//           //         onPressed: () {
+//           //           jumpToPage(page: totalPages! - 1);
+//                   // },
+//                 // ),
+//               // ],
+//             // );
+//           // }, 
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 
 class PDFScreen extends StatefulWidget {
